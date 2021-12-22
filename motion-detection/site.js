@@ -49,6 +49,7 @@ function capture(payload) {
 			play('i-see-you');
 		} else {
 			play('fire');
+			MotionDetected();
 		}
 		clearTimeout(lostTimeout);
 		lostTimeout = setTimeout(declareLost, 2000);
@@ -62,10 +63,18 @@ function knockOver() {
 	play('ow');
 }
 
-
 function declareLost() {
 	isTargetInSight = false;
 	play('target-lost');
+	MotionNotDetected();
+}
+
+function MotionDetected(){
+	document.getElementById('status').innerHTML = 'Motion Detected';
+}
+
+function MotionNotDetected(){
+	document.getElementById('status').innerHTML = 'Motion Not Detected';
 }
 
 function play(audioId) {
